@@ -1,0 +1,23 @@
+{
+  "name": "prectice-working",
+  "version": "1.0.0",
+  "description": "precticing node js'",
+  "homepage": "https://github.com/pranta2003/Prectice-Working#readme",
+  "bugs": {
+    "url": "https://github.com/pranta2003/Prectice-Working/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranta2003/Prectice-Working.git"
+  },
+  "license": "ISC",
+  "author": "Pranta",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
