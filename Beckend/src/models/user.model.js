@@ -1,33 +1,33 @@
-import mongoose , { schema} from "mongoose ";
+import mongoose from "mongoose";
 
-
-const userSchema =  new Schema({
-
+const userSchema = new mongoose.Schema(
+{
     username: {
         type: String,
         required: true,
         unique: true,
         lowercase: true,
         trim: true,
-        minlenght: 3,
-        maxlenght: 30
+        minlength: 3,
+        maxlength: 30
     },
-    password:{
+    password: {
         type: String,
         required: true,
-        minlenght: 6,
-        maxlenght: 128
-
+        minlength: 6,
+        maxlength: 128
     },
     email: {
-           type: String,
+        type: String,
         required: true,
         unique: true,
         lowercase: true,
-        trim: true,
-    // minlenght: 3,
-     //   maxlenght: 30     
-    },
-});
+        trim: true
+    }
+},
+{
+    timestamps: true
+}
+);
 
-
+export const User = mongoose.model("User", userSchema);
