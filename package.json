@@ -15,11 +15,13 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "nodemon Beckend/src/index.js "
   },
   "dependencies": {
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mongoose": "^9.3.0"
+    "mongoose": "^9.3.0",
+    "nodemon": "^3.1.14"
   }
 }
