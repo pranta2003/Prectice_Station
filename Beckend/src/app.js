@@ -7,7 +7,7 @@ app.use(express.json()); //to parse json data from request body . ok nigga ?
 
 
 // import routes 
-import userRouter from "./routes/user.routes.js";
+import userRouter from "./routes/user.route.js";
 
 // declare routes
 app.use("api/v1/users", userRouter);
