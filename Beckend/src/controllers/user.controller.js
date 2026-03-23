@@ -41,6 +41,25 @@ const registerUser = async (req, res) => {
     }
 };
 
+
+const loginUser = async (req , res )=> {
+    try {
+        const { email , password } = req.body;
+
+        const user = await User.findOne({ email:email.toLowerCase() });
+
+        if( !User) return res.status(400).json({ message: "Invalid re bhai" });
+
+        //compare password
+
+        
+        
+
+    } catch ( error){
+
+    }
+}
+
 export {
     registerUser
 };

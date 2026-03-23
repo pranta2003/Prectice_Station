@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bycrpt from "bcrypts";
 const userSchema = new mongoose.Schema(
 {
     username: {
@@ -29,5 +29,14 @@ const userSchema = new mongoose.Schema(
     timestamps: true
 }
 );
+
+// before save any passwprd , we have to hash it bhaiya , 
+userSchema.pre("save", async function(next){
+    if ( !this.isModified("password") ) return.next();
+    this.password = await bycrpt.hash(this.password, 10);
+
+});
+
+
 
 export const User = mongoose.model("User", userSchema);
