@@ -10,9 +10,9 @@ app.use(express.json()); //to parse json data from request body . ok nigga ?
 import userRouter from "./routes/user.route.js";
 
 // declare routes
-app.use("api/v1/users", userRouter);
+app.use("/api/v1/users", userRouter);
 
-// example route : https://localhost:4000/api/v1/users/registers
+// example route : https://localhost:4000/api/v1/users/register
 
 
  
