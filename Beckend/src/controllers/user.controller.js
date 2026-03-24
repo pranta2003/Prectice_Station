@@ -33,51 +33,56 @@ const registerUser = async (req, res) => {
             }
         });
 
+    } catch (error){
+    console.log("LOGIN ERROR:", error); // 👈 VERY IMPORTANT
+    res.status(500).json({
+        message: "Internal Server Error",
+        error: error.message
+    })
+}
+};
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        console.log("Request:", email, password);
+
+        const user = await User.findOne({ email: email.toLowerCase() });
+
+        console.log("User found:", user);
+
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        const isMatch = await user.comparePassword(password);
+
+        console.log("Password match:", isMatch);
+
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid password" });
+        }
+
+        res.status(200).json({
+            message: "Login successful",
+            user: {
+                id: user._id,
+                email: user.email,
+                username: user.username
+            }
+        });
+
     } catch (error) {
+        console.log("LOGIN ERROR:", error); 
         res.status(500).json({
-            message: "Internal Server error",
+            message: "Internal Server Error",
             error: error.message
         });
     }
 };
 
 
-const loginUser = async (req , res )=> {
-    try {
-        const { email , password } = req.body;
-
-        const user = await User.findOne({ email:email.toLowerCase() });
-
-        if( !User) return res.status(400).json({ message: "Invalid re bhai" });
-
-        //compare password
-
-        const isMatch = await user.comaparePassword(password);
-        if(! isMatch) return res.status(400).json(
-            {message: "Invalid credentials boy"}
-
-        )
-        res.status(200).jspm({
-            message: "Login successful , ja ghuira ay",
-            user: { id: user._id, 
-                email: user.email,
-                username:user.username
-            }
-
-        })
-        
-
-    } catch ( error){
-
-        res.status(500).json({
-            message:"Internal Server Error",
-
-
-        })
-    }
-}
-
 export {
-    registerUser ,
+    registerUser,
     loginUser
 };

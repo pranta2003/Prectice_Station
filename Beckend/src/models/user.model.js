@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import bycrpt from "bcrypts";
+import bcrypt from "bcrypt";
+
 const userSchema = new mongoose.Schema(
 {
     username: {
@@ -30,20 +31,16 @@ const userSchema = new mongoose.Schema(
 }
 );
 
-// before save any passwprd , we have to hash it bhaiya , 
-userSchema.pre("save", async function(next){
-    if ( !this.isModified("password") ) return.next();
-    this.password = await bycrpt.hash(this.password, 10);
+// hash password before save
+userSchema.pre("save", async function () {
+    if (!this.isModified("password")) return;
 
+    this.password = await bcrypt.hash(this.password, 10);
 });
 
-next();
-
-//compare password
-userSchema.methods.comparePassword = async function(password){
-    return await bycrpt.compare(password, this.password);
-
-}
-
+// compare password
+userSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+};
 
 export const User = mongoose.model("User", userSchema);
