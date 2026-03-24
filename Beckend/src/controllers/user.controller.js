@@ -52,14 +52,32 @@ const loginUser = async (req , res )=> {
 
         //compare password
 
-        
+        const isMatch = await user.comaparePassword(password);
+        if(! isMatch) return res.status(400).json(
+            {message: "Invalid credentials boy"}
+
+        )
+        res.status(200).jspm({
+            message: "Login successful , ja ghuira ay",
+            user: { id: user._id, 
+                email: user.email,
+                username:user.username
+            }
+
+        })
         
 
     } catch ( error){
 
+        res.status(500).json({
+            message:"Internal Server Error",
+
+
+        })
     }
 }
 
 export {
-    registerUser
+    registerUser ,
+    loginUser
 };
