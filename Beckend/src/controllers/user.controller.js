@@ -1,5 +1,5 @@
 import { User } from "../models/user.model.js";
-
+// basic authenticaion complete
 const registerUser = async (req, res) => {
     try {
         const { username, password, email } = req.body;
@@ -102,6 +102,7 @@ const logoutUser = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error",error});
     }
 }
+// close
 
 export {
     registerUser,
