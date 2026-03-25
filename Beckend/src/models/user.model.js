@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true
 }
 );
-
+// logout problem fix
 // hash password before save
 userSchema.pre("save", async function () {
     if (!this.isModified("password")) return;
