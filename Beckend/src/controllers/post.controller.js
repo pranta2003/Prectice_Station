@@ -75,7 +75,7 @@ const updatePost = async (req, res) => {
     }
 }          
 
-const deletePost = async (res, req) => {
+const deletePost = async (req , res) => {
     try {
         const deleted = await Post.findByIdAndDelete(req.params.id);   
         if(!deleted){
