@@ -41,46 +41,41 @@ const getPosts = async (req, res ) => {
 }
 
 const updatePost = async (req, res) => {
+    
     try {
 
-        //basic validation to check if the body is empty
-        // const { id } = req.params;
-        // const { name, description, age } = req.body;        
- 
-        // we will now get value from keys .
-
-        if(object.keys(req.body).length === 0 ){
+        if (Object.keys(req.body).length === 0) {
             return res.status(400).json({
-                message:"All fields are needed . barbar bolte parbo na ."
+                message: "All fields are needed"
             });
-         }
-         const post = await Post.findByIdAndUpdate(req.params.id , req.body , {new:true});
+        }
 
-         if(!post){
+        const post = await Post.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+
+        if (!post) {
             return res.status(404).json({
-                message:"Post not found"
+                message: "Post not found"
             });
-         }  
+        }
 
-            res.status(200).json({  
-                message:"Post updated",
-                post
-             });
-    
+        return res.status(200).json({
+            message: "Post updated",
+            post
+        });
 
-
-
-
-        
-
-
-    } catch (error){
-        res.status(500).json({
-            message:"Internal Server Error",   error
-         })
-     }          
-
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message
+        });
     }
+}          
+
+    
 export{
     createPost,
     getPosts,
