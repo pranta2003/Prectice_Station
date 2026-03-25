@@ -7,5 +7,6 @@ import {Router} from "express";
  router.route('/create').post( createPost);
  router.route('/').get( getPosts);
 
+ router.route('/update/:id').patch( updatePost);
 
  export default router;
