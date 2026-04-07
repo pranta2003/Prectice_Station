@@ -6,4 +6,6 @@ export const DB_NAME = "Precrtice_working";
 //     console.log("lol");
 // },2000);
 
-// function my() { setTimeout(() => { console.log("h"); }, 2000); }
+
+
+//
